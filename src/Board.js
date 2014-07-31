@@ -85,30 +85,23 @@
         if(currentRow[i] === 1){
           counter++;
         }
+        if(counter > 1){
+          return true;
+        }
       }
-      if(counter < 2){
-        return false;
-      } else {
-        return true;
-      }
+      return false;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       var numRows = this.rows().length;
-      var result;
       for(var i = 0; i < numRows; i++){
         if(this.hasRowConflictAt(i)){
-          result = true;
+          return true;
         }
       }
-      if(!result){
-        result = false;
-      }
-      return result;
+      return false;
     },
-
-
 
     // COLUMNS - run from top to bottom
     // --------------------------------------------------------------
@@ -121,12 +114,11 @@
         if(this.get(i)[colIndex] === 1){
           counter++;
         }
+        if(counter > 1){
+          return true;
+        }
       }
-      if(counter < 2){
-        return false;
-      } else {
-        return true;
-      }
+      return false;
     },
 
     // test if any columns on this board contain conflicts
@@ -134,19 +126,13 @@
       //we will always have equal number of rows & columns
       //hence iterating through number of rows is fine
       var numRows = this.rows().length;
-      var result;
       for(var i = 0; i < numRows; i++){
         if(this.hasColConflictAt(i)){
-          result = true;
+          return true;
         }
       }
-      if(!result){
-        result = false;
-      }
-      return result;
+      return false;
     },
-
-
 
     // Major Diagonals - go from top-left to bottom-right
     // --------------------------------------------------------------
@@ -172,26 +158,22 @@
           currSquare = this.get(rowValue)[colValue];
         }
       }
-      if(counter < 2){
-        return false;
-      } else {
+      if(counter > 1){
         return true;
       }
+
+      return false;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       var diagonalLen = this.rows().length;
-      var result;
       for(var i = (-1 * diagonalLen) + 1; i < diagonalLen; i++){
         if(this.hasMajorDiagonalConflictAt(i)){
-          result = true;
+          return true;
         }
       }
-      if(!result){
-        result = false;
-      }
-      return result;
+      return false;
     },
 
 
@@ -222,26 +204,22 @@
           currSquare = this.get(rowValue)[colValue];
         }
       }
-      if(counter < 2){
-        return false;
-      } else {
+      if(counter > 1){
         return true;
       }
+
+      return false;
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
       var diagonalLen = 2*(this.rows().length - 1);
-      var result;
       for(var i = 0; i <= diagonalLen; i++){
         if(this.hasMinorDiagonalConflictAt(i)){
-          result = true;
+          return true;
         }
       }
-      if(!result){
-        result = false;
-      }
-      return result;
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
